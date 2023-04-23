@@ -13,6 +13,7 @@ export default function AddNote() {
   const handleClick = (e) => {
     e.preventDefault();
     addNote(note.title, note.description, note.tag);
+    setNote({ title: "", description: "", tag: "" });
   };
 
   return (
@@ -61,7 +62,12 @@ export default function AddNote() {
             value={note.tag}
           />
         </div>
-        <button type="button" className="btn btn-primary" onClick={handleClick}>
+        <button
+          type="button"
+          disabled={!(note.title.length && note.description.length)}
+          className="btn btn-primary"
+          onClick={handleClick}
+        >
           Submit
         </button>
       </form>

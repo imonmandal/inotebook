@@ -26,7 +26,9 @@ const NoteState = (props) => {
         "auth-token":
           "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQzZmFjOTY2N2YxZjFjM2EwNTU4YmU0In0sImlhdCI6MTY4MTg5NDU1MH0.zbt9peJVFJGf3dlzFeACMDqa9JEiw7-pYxZ9I1AgVG0",
       },
-      body: JSON.stringify({ title, description, tag }),
+      body: JSON.stringify(
+        tag.length ? { title, description, tag } : { title, description }
+      ),
     });
     if (res.status === 200) getNotes();
   };
@@ -49,6 +51,7 @@ const NoteState = (props) => {
   };
 
   const editNote = async (id, title, description, tag) => {
+    if (tag.length === 0) tag = "General";
     let res = await fetch(`${host}/api/notes/updatenote/${id}`, {
       method: "PUT",
       headers: {

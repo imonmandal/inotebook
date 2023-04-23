@@ -98,6 +98,7 @@ export default function Modal(props) {
             <div className="modal-footer">
               <button
                 type="button"
+                disabled={!(note.title.length && note.description.length)}
                 className="btn btn-primary"
                 data-bs-dismiss="modal"
                 onClick={handleClick}

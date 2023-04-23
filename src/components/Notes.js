@@ -28,6 +28,7 @@ export default function Notes() {
 
       <div>
         <h1>Your Notes</h1>
+        {notes.notes.length === 0 && "No notes to display"}
         <div className="row g-3">
           {notes.notes.map((note) => {
             return (

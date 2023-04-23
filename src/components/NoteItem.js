@@ -3,9 +3,9 @@ import noteContext from "../context/notes/noteContext";
 import { useContext } from "react";
 
 export default function NoteItem(props) {
-  const { note } = props;
+  const { note, setModalData } = props;
   const context = useContext(noteContext);
-  const { deleteNote, editNote } = context;
+  const { deleteNote } = context;
   return (
     <div className="col-3">
       <div className="card">
@@ -14,9 +14,11 @@ export default function NoteItem(props) {
             <h5 className="card-title">{note.title}</h5>
             <i
               className="fa-solid fa-pen-to-square mx-3"
-              // onClick={() => {
-              //   editNote(note._id, title, description, tag);
-              // }}
+              onClick={() => {
+                setModalData({ ...note });
+                let modalbtn = document.getElementById("modalbtn");
+                modalbtn.click();
+              }}
             ></i>
             <i
               className="fa-solid fa-trash-can"

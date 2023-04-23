@@ -1,7 +1,8 @@
 import React from "react";
 import noteContext from "../context/notes/noteContext";
-import { useContext, useEffect } from "react";
+import { useState, useContext, useEffect } from "react";
 import NoteItem from "./NoteItem";
+import Modal from "./Modal";
 
 export default function Notes() {
   const context = useContext(noteContext);
@@ -11,14 +12,34 @@ export default function Notes() {
     getNotes();
   });
 
+  const [modalData, setModalData] = useState({
+    _id: "",
+    uid: "",
+    title: "",
+    description: "",
+    tag: "",
+    date: "",
+    __v: 0,
+  });
+
   return (
-    <div>
-      <h1>Your Notes</h1>
-      <div className="row g-3">
-        {notes.notes.map((note) => {
-          return <NoteItem key={note._id} note={note} />;
-        })}
+    <>
+      <Modal modalData={modalData} setModalData={setModalData} />
+
+      <div>
+        <h1>Your Notes</h1>
+        <div className="row g-3">
+          {notes.notes.map((note) => {
+            return (
+              <NoteItem
+                key={note._id}
+                note={note}
+                setModalData={setModalData}
+              />
+            );
+          })}
+        </div>
       </div>
-    </div>
+    </>
   );
 }

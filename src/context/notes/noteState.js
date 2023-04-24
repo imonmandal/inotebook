@@ -30,7 +30,11 @@ const NoteState = (props) => {
         tag.length ? { title, description, tag } : { title, description }
       ),
     });
-    if (res.status === 200) getNotes();
+    if (res.status === 200) {
+      getNotes();
+      return true;
+    }
+    return false;
   };
 
   const deleteNote = async (id) => {
@@ -70,7 +74,9 @@ const NoteState = (props) => {
         }
       }
       setNotes({ notes: newNotes });
+      return true;
     }
+    return false;
   };
 
   return (

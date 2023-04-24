@@ -4,9 +4,10 @@ import { useState, useContext, useEffect } from "react";
 import NoteItem from "./NoteItem";
 import Modal from "./Modal";
 
-export default function Notes() {
+export default function Notes(props) {
   const context = useContext(noteContext);
   const { notes, getNotes } = context;
+  const { showAlert } = props;
 
   useEffect(() => {
     getNotes();
@@ -24,7 +25,11 @@ export default function Notes() {
 
   return (
     <>
-      <Modal modalData={modalData} setModalData={setModalData} />
+      <Modal
+        modalData={modalData}
+        setModalData={setModalData}
+        showAlert={showAlert}
+      />
 
       <div>
         <h1>Your Notes</h1>

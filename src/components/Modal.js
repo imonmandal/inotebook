@@ -11,9 +11,13 @@ export default function Modal(props) {
   const onChange = (e) => {
     setNote({ ...note, [e.target.name]: e.target.value });
   };
-  const handleClick = (e) => {
+  const handleClick = async (e) => {
     e.preventDefault();
-    editNote(note._id, note.title, note.description, note.tag);
+    if (await editNote(note._id, note.title, note.description, note.tag)) {
+      props.showAlert("Note Edited Successfully", "success");
+    } else {
+      props.showAlert("Failed to Edit Note", "danger");
+    }
   };
 
   return (

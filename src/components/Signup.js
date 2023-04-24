@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function Signup() {
+export default function Signup(props) {
   const [credentials, setCredentials] = useState({
     name: "",
     email: "",
@@ -25,10 +25,11 @@ export default function Signup() {
     if (res.status === 200) {
       res = await res.json();
       navigate("/login"); // to redirect
+      props.showAlert("Account Created Successfully", "success");
     } else {
       res = await res.json();
+      props.showAlert("Invalid Credentials", "danger");
     }
-    console.log(res);
   };
 
   return (

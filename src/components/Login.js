@@ -23,7 +23,7 @@ export const Login = (props) => {
     });
     if (res.status === 200) {
       res = await res.json();
-      localStorage.setItem("token", res.authToken);
+      localStorage.setItem("authToken", res.authToken);
       navigate("/"); // to redirect
       props.showAlert("Logged in Successfully", "success");
     } else {

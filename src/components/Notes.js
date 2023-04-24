@@ -11,7 +11,7 @@ export default function Notes(props) {
 
   useEffect(() => {
     getNotes();
-  });
+  }, []);
 
   const [modalData, setModalData] = useState({
     _id: "",

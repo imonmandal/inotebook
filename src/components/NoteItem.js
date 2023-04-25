@@ -27,6 +27,7 @@ export default function NoteItem(props) {
               }}
             ></i>
           </div>
+          <h6 class="card-subtitle mb-2 text-muted">{note.tag}</h6>
           <p className="card-text">{note.description}</p>
         </div>
       </div>
